@@ -4,6 +4,11 @@ A native UNRAID 7.2+ plugin for visually creating webGUI themes. Pick colors,
 see a dashboard preview immediately, check text contrast, then apply the theme
 without editing CSS by hand.
 
+## Development disclosure
+
+AI coding tools helped design, write, and review this project. I chose the
+requirements and remain responsible for the published code.
+
 ## What is included
 
 - Live dashboard preview with desktop and mobile sizes
