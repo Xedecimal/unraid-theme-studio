@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Containers>
+<Plugin>
   <PluginURL>https://raw.githubusercontent.com/rafzzzzzz/unraid-theme-studio/main/theme.studio.plg</PluginURL>
   <PluginAuthor>Rafael Marques</PluginAuthor>
   <Beta>True</Beta>
@@ -13,4 +13,4 @@
   <IconFA>paint-brush</IconFA>
   <MinVer>7.2.0</MinVer>
   <License>MIT</License>
-</Containers>
+</Plugin>

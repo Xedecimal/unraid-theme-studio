@@ -74,7 +74,7 @@ must exactly match the `pluginURL` in `theme.studio.plg`.
 
 Before submitting to Community Applications:
 
-- Add the required `ca_profile.xml` repository profile. This is not included yet.
+- Keep the root `ca_profile.xml` repository profile and plugin wrapper current.
 - Test a fresh installation, an update, a reboot, disabling and re-enabling the
   theme, and uninstalling on an Unraid server. Uninstall currently removes saved
   Theme Studio settings, so back them up before testing it.
@@ -92,7 +92,8 @@ Passing the local tests does not establish full Unraid compatibility or CA appro
 - `preview/` — standalone browser test harness
 - `scripts/build.sh` — creates the Slackware `.txz`, checksum, and `.plg`
 - `plugin/theme.studio.plg.in` — install manifest template
-- `community-applications/` — CA listing template to move to a dedicated repo
+- `community-applications/` — CA plugin listing
+- `ca_profile.xml` — CA repository profile
 
 ## Compatibility note
 

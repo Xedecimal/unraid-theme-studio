@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CommunityApplications>
+  <Profile>UNRAID Theme Studio is a beta plugin for creating webGUI themes with color pickers, presets, a live preview, and optional visual effects. It targets Unraid 7.2 and later. Report problems and request help through the repository's GitHub Issues page.</Profile>
+  <Icon>https://raw.githubusercontent.com/rafzzzzzz/unraid-theme-studio/main/source/theme.studio/usr/local/emhttp/plugins/theme.studio/images/theme.studio.png</Icon>
+  <WebPage>https://github.com/rafzzzzzz/unraid-theme-studio</WebPage>
+</CommunityApplications>
