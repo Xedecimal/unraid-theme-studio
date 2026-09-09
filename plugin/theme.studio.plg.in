@@ -14,6 +14,7 @@
 
 <CHANGES>
 ### &version;
+- Keep the Import, JSON, CSS, and Reset toolbar within the editor panel.
 - Give preset labels room to wrap and reset inherited button spacing.
 - Remove the header logo replacement and personal preview greeting.
 - Validate imported themes and preserve UTF-8 names.

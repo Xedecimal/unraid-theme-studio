@@ -87,9 +87,10 @@
 .ts-badge { padding:3px 7px; border-radius:10px; background:#2b2b2b; color:#bbb; font-size:9px; font-weight:800; }
 .ts-badge.is-pass { background:#18361f; color:#64dc7c; }
 .ts-badge.is-fail { background:#421e1e; color:#ff8585; }
-.ts-tools { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; margin-top:auto; border-top:1px solid var(--ts-line); background:var(--ts-line); }
-.ts-tools button { min-height:50px; border:0!important; border-radius:0!important; background:#161616!important; color:#83838a!important; font:9px clear-sans,sans-serif!important; text-transform:none!important; box-shadow:none!important; cursor:pointer; }
-.ts-tools button i { display:block; margin:0 0 5px; font-size:13px; }
+.ts-tools { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:1px; width:100%; min-width:0; margin-top:auto; padding:0; border-top:1px solid var(--ts-line); background:var(--ts-line); }
+.ts-tools button { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px; width:100%!important; min-width:0!important; max-width:100%; min-height:50px; height:auto; margin:0!important; padding:8px 4px!important; border:0!important; border-radius:0!important; background:#161616!important; color:#83838a!important; font:600 10px/1.3 clear-sans,sans-serif!important; letter-spacing:0!important; white-space:normal!important; overflow-wrap:anywhere; text-align:center; text-transform:none!important; box-shadow:none!important; cursor:pointer; }
+.ts-tools button i { display:block; margin:0; font-size:13px; }
+.ts-tools button:focus-visible { outline:2px solid var(--ts-accent); outline-offset:-3px; }
 .ts-tools button:hover { background:#1f1f1f!important; color:#fff!important; }
 .ts-preview-shell { min-width:0; padding:24px; background:radial-gradient(circle at 60% 5%,#26211e 0,transparent 34%),#0c0c0c; }
 .ts-preview-toolbar { display:flex; align-items:center; gap:15px; height:39px; max-width:1100px; margin:0 auto; padding:0 11px; border:1px solid #343434; border-bottom:0; border-radius:10px 10px 0 0; background:#202020; }
