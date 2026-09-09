@@ -120,13 +120,13 @@ $themeStudioAssetVersion = (string)@filemtime("$docroot/plugins/theme.studio/ass
       <div id="ts-preview-stage" class="ts-preview-stage">
         <div id="ts-dashboard-preview" class="ts-dashboard">
           <header class="ts-dash-header">
-            <div class="ts-logo-mark"><span>UN</span><span>RAID</span></div>
+            <div class="ts-logo-mark">UNRAID</div>
             <div class="ts-server"><strong>TOWER</strong><small>Media server · 192.168.1.20</small></div>
             <div class="ts-header-icons"><i class="fa fa-search"></i><i class="fa fa-terminal"></i><i class="fa fa-bell-o"></i></div>
           </header>
           <nav class="ts-dash-nav"><a class="is-active">Dashboard</a><a>Main</a><a>Shares</a><a>Users</a><a>Settings</a><a>Plugins</a><a>Docker</a><a>VMs</a></nav>
           <section class="ts-dash-content">
-            <div class="ts-preview-title"><div><small>MONDAY, AUGUST 3</small><h3>Good evening, Rafa.</h3></div><span><i class="fa fa-circle"></i> Array healthy</span></div>
+            <div class="ts-preview-title"><div><small>SERVER OVERVIEW</small><h3>Your dashboard</h3></div><span><i class="fa fa-circle"></i> Array healthy</span></div>
             <div class="ts-stat-grid">
               <article><span class="ts-stat-icon"><i class="fa fa-microchip"></i></span><div><small>PROCESSOR</small><strong>Intel Core i7</strong><em>24% load</em></div><div class="ts-ring" style="--value:24"><b>24<small>%</small></b></div></article>
               <article><span class="ts-stat-icon"><i class="fa fa-server"></i></span><div><small>MEMORY</small><strong>32.1 GB</strong><em>of 64 GB</em></div><div class="ts-ring" style="--value:50"><b>50<small>%</small></b></div></article>

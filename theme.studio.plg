@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "theme.studio">
 <!ENTITY author    "Rafael Marques">
-<!ENTITY version   "2026.09.09.1">
-<!ENTITY md5       "d722a20d159a63858118a6d4134a4762">
+<!ENTITY version   "2026.09.09.2">
+<!ENTITY md5       "7b2d98ca70146b9a43460b70f4a9b634">
 <!ENTITY github    "rafzzzzzz/unraid-theme-studio">
 <!ENTITY branch    "main">
 <!ENTITY launch    "Settings/UserPreferences/ThemeStudio">
@@ -14,6 +14,8 @@
 
 <CHANGES>
 ### &version;
+- Give preset labels room to wrap and reset inherited button spacing.
+- Remove the header logo replacement and personal preview greeting.
 - Validate imported themes and preserve UTF-8 names.
 - Match CSS exports to applied themes, including disabled themes.
 - Fix pending undo history and preserve corner radius when switching presets.

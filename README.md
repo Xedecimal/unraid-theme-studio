@@ -68,11 +68,23 @@ Then open **Settings → User Preferences → Theme Studio**.
 
 ## Community Applications publication
 
-Community Applications requires a small plugin template repository. Copy
-`community-applications/theme-studio.xml` into a dedicated template repository,
-replace the placeholder URLs and author, then submit that repository to the
-Community Applications maintainers. The `PluginURL` must exactly match the
-`pluginURL` in `theme.studio.plg`.
+The plugin wrapper is in `community-applications/theme-studio.xml` and currently
+marks the plugin as beta. Its URLs point to this repository. The `PluginURL`
+must exactly match the `pluginURL` in `theme.studio.plg`.
+
+Before submitting to Community Applications:
+
+- Add the required `ca_profile.xml` repository profile. This is not included yet.
+- Test a fresh installation, an update, a reboot, disabling and re-enabling the
+  theme, and uninstalling on an Unraid server. Uninstall currently removes saved
+  Theme Studio settings, so back them up before testing it.
+- Check Dashboard, Main, Docker, Plugins, and Settings with dark and light
+  presets, including a narrow browser window. Check for conflicts with other
+  custom CSS plugins.
+- Run Validate and Scan in the submission portal and submit for review.
+
+Follow the current [submission guide](https://ca.unraid.net/submit/help).
+Passing the local tests does not establish full Unraid compatibility or CA approval.
 
 ## Development layout
 

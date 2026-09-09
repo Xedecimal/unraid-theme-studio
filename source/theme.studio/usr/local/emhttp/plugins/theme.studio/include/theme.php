@@ -248,26 +248,6 @@ body {
   background-color: transparent;
   background-image: none;
 }
-#header .logo:not(:has(.partner-logo)) > svg,
-#header .logo:not(:has(.partner-logo)) > a > svg {
-  display: none !important;
-}
-#header .logo:not(:has(.partner-logo)) > a:has(> svg)::before,
-#header .logo:not(:has(.partner-logo)):has(> svg)::before {
-  content: "UNRAID";
-  display: block;
-  box-sizing: border-box;
-  width: 160px;
-  margin: 19px 0 5px;
-  color: var(--brand-orange);
-  font-family: clear-sans, sans-serif;
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 39px;
-  letter-spacing: .18em;
-  text-align: center;
-  text-indent: .18em;
-}
 a, .fa-external-link { color: var(--link-text-color); }
 table.tablesorter { background-color: var(--dynamix-tablesorter-tbody-row-bg-color); }
 html:root[class*="Theme--"] table.usb_mounts,

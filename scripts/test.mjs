@@ -34,7 +34,7 @@ for (const preset of Object.values(api.presets)) {
   const css = api.cssForTheme(preset);
   for (const [,variable] of php.matchAll(/^  (--[\w-]+):/gm)) assert(css.includes(variable + ':'), 'Export missing ' + variable);
   assert(css.includes('.status-green'));
-  assert(css.includes(':has(> svg)::before'));
+  assert(!css.includes('#header .logo'), 'Stock logo must not be replaced');
 }
 if (process.env.PHP_BINARY) {
   const phpPath = new URL('include/theme.php', base).pathname.replace(/^\/(\w:)/,'$1');

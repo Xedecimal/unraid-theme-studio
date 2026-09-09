@@ -14,6 +14,8 @@
 
 <CHANGES>
 ### &version;
+- Give preset labels room to wrap and reset inherited button spacing.
+- Remove the header logo replacement and personal preview greeting.
 - Validate imported themes and preserve UTF-8 names.
 - Match CSS exports to applied themes, including disabled themes.
 - Fix pending undo history and preserve corner radius when switching presets.
