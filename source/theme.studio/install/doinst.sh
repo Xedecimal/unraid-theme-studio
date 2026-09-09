@@ -1,5 +1,5 @@
 #!/bin/bash
-set -u
+set -eu
 
 PLUGIN_DIR="/usr/local/emhttp/plugins/theme.studio"
 CONFIG_DIR="/boot/config/plugins/theme.studio"

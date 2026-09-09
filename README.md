@@ -48,8 +48,15 @@ chmod +x scripts/build.sh
 GITHUB_REPOSITORY=rafzzzzzz/unraid-theme-studio ./scripts/build.sh
 ```
 
-Artifacts are written to `dist/`. Commit the generated `theme.studio.plg` and
-publish the `.txz` file in a GitHub release using the version as its tag.
+Artifacts are written to `dist/` and `archive/`. Publish the generated
+`theme.studio.plg` and matching `archive/*.txz` together on `main`, since the
+installer downloads its package from that branch. Use a new `VERSION` for every
+published package.
+
+Run `node scripts/test.mjs` and `php scripts/test.php` before building. The PHP
+checks use temporary files and never touch an installed theme. Browser CSS
+exports mirror the PHP generator. After changing its CSS, `node scripts/sync-css.mjs`
+prints an `apply_patch` patch to update the browser copy; the tests reject drift.
 
 For a manual test install, copy the `.txz` to an UNRAID server and run:
 

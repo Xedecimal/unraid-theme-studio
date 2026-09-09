@@ -9,18 +9,24 @@ if (($_SERVER['REQUEST_METHOD'] ?? '') !== 'POST') {
     exit;
 }
 
-$action = (string)($_POST['action'] ?? 'save');
+$action = $_POST['action'] ?? 'save';
+if (!is_string($action) || !in_array($action, ['save', 'reset'], true)) {
+    http_response_code(400);
+    echo json_encode(['ok' => false, 'error' => 'Unknown action']);
+    exit;
+}
 
 if ($action === 'reset') {
     $theme = theme_studio_defaults();
 } else {
-    $decoded = json_decode((string)($_POST['theme'] ?? ''), true);
-    if (!is_array($decoded)) {
+    $raw = $_POST['theme'] ?? '';
+    $decoded = is_string($raw) ? json_decode($raw) : null;
+    if (!is_object($decoded)) {
         http_response_code(400);
         echo json_encode(['ok' => false, 'error' => 'Invalid theme data']);
         exit;
     }
-    $theme = theme_studio_validate($decoded);
+    $theme = theme_studio_validate((array)$decoded);
 }
 
 if (!theme_studio_save($theme)) {

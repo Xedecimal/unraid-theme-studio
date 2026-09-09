@@ -2,8 +2,8 @@
 <!DOCTYPE PLUGIN [
 <!ENTITY name      "theme.studio">
 <!ENTITY author    "Rafael Marques">
-<!ENTITY version   "2026.08.05.1">
-<!ENTITY md5       "565dca1722abc002d8a06a13f6f15fa4">
+<!ENTITY version   "2026.09.09.1">
+<!ENTITY md5       "d722a20d159a63858118a6d4134a4762">
 <!ENTITY github    "rafzzzzzz/unraid-theme-studio">
 <!ENTITY branch    "main">
 <!ENTITY launch    "Settings/UserPreferences/ThemeStudio">
@@ -14,6 +14,12 @@
 
 <CHANGES>
 ### &version;
+- Validate imported themes and preserve UTF-8 names.
+- Match CSS exports to applied themes, including disabled themes.
+- Fix pending undo history and preserve corner radius when switching presets.
+- Preserve header icons when replacing the Unraid wordmark.
+- Serialize saves, check write lengths, and report installation failures.
+- Fix Windows preview line endings and restrict file paths to the repository.
 - Match the Oblivion Dark preset to its published navy, blue, and green palette.
 - Replace the stock Unraid header SVG with accent-colored text while preserving partner logos.
 - Make the injected dashboard section spacers fully transparent.

@@ -14,6 +14,7 @@
     fetch('../source/theme.studio/usr/local/emhttp/plugins/theme.studio/ThemeStudio.page')
       .then(function (response) { if (!response.ok) throw new Error('Could not load the plugin page'); return response.text(); })
       .then(function (page) {
+        page = page.replace(/\r\n/g, '\n');
         var marker = page.indexOf('\n---\n');
         var html = page.slice(marker + 5)
           .replace(/^<\?php[\s\S]*?\?>\s*/,'')

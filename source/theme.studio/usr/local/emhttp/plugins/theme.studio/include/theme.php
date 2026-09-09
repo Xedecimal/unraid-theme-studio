@@ -35,6 +35,11 @@ function theme_studio_defaults(): array
 function theme_studio_validate(array $input): array
 {
     $defaults = theme_studio_defaults();
+    foreach ($input as $key => $value) {
+        if (!is_scalar($value) || (is_string($value) && !preg_match('//u', $value))) {
+            unset($input[$key]);
+        }
+    }
     $output = [];
     $enabled = $input['enabled'] ?? $defaults['enabled'];
     $output['enabled'] = filter_var($enabled, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
@@ -42,7 +47,8 @@ function theme_studio_validate(array $input): array
         $output['enabled'] = $defaults['enabled'];
     }
     $output['name'] = trim((string)($input['name'] ?? $defaults['name']));
-    $output['name'] = substr($output['name'] ?: $defaults['name'], 0, 48);
+    preg_match('/^.{0,48}/us', $output['name'] ?: $defaults['name'], $nameMatch);
+    $output['name'] = $nameMatch[0];
 
     foreach (array_keys($defaults) as $key) {
         if (!is_string($defaults[$key]) || $key === 'name') {
@@ -242,11 +248,12 @@ body {
   background-color: transparent;
   background-image: none;
 }
-#header .logo:not(:has(.partner-logo)) svg {
+#header .logo:not(:has(.partner-logo)) > svg,
+#header .logo:not(:has(.partner-logo)) > a > svg {
   display: none !important;
 }
-#header .logo:not(:has(.partner-logo)) > a::before,
-#header .logo:not(:has(.partner-logo)):not(:has(> a))::before {
+#header .logo:not(:has(.partner-logo)) > a:has(> svg)::before,
+#header .logo:not(:has(.partner-logo)):has(> svg)::before {
   content: "UNRAID";
   display: block;
   box-sizing: border-box;
@@ -375,19 +382,36 @@ function theme_studio_atomic_write(string $path, string $contents): bool
         return false;
     }
     $temporary = $path . '.tmp.' . getmypid();
-    if (file_put_contents($temporary, $contents, LOCK_EX) === false) {
+    if (file_put_contents($temporary, $contents, LOCK_EX) !== strlen($contents)) {
+        @unlink($temporary);
         return false;
     }
     chmod($temporary, 0644);
-    return rename($temporary, $path);
+    if (!rename($temporary, $path)) {
+        @unlink($temporary);
+        return false;
+    }
+    return true;
 }
 
 function theme_studio_save(array $theme): bool
 {
     $validated = theme_studio_validate($theme);
-    $json = json_encode($validated, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES) . "\n";
+    $json = json_encode($validated, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+    if ($json === false) return false;
+    $json .= "\n";
     $css = theme_studio_css($validated);
-    return theme_studio_atomic_write(THEME_STUDIO_CONFIG, $json)
-        && theme_studio_atomic_write(THEME_STUDIO_PERSISTENT_CSS, $css)
-        && theme_studio_atomic_write(THEME_STUDIO_LIVE_CSS, $css);
+    $directory = dirname(THEME_STUDIO_CONFIG);
+    if (!is_dir($directory) && !mkdir($directory, 0755, true) && !is_dir($directory)) return false;
+    $lock = fopen($directory . '/theme.lock', 'c');
+    if ($lock === false) return false;
+    try {
+        if (!flock($lock, LOCK_EX)) return false;
+        return theme_studio_atomic_write(THEME_STUDIO_CONFIG, $json)
+            && theme_studio_atomic_write(THEME_STUDIO_PERSISTENT_CSS, $css)
+            && theme_studio_atomic_write(THEME_STUDIO_LIVE_CSS, $css);
+    } finally {
+        flock($lock, LOCK_UN);
+        fclose($lock);
+    }
 }

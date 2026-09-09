@@ -29,7 +29,7 @@ try {
     $relative = [Uri]::UnescapeDataString($requestPath.TrimStart('/'))
     if (!$relative -or $relative.EndsWith('/')) { $relative += 'index.html' }
     $path = [IO.Path]::GetFullPath((Join-Path $root $relative))
-    if (!$path.StartsWith($root, [StringComparison]::OrdinalIgnoreCase) -or !(Test-Path -LiteralPath $path -PathType Leaf)) {
+    if (!$path.StartsWith($root + [IO.Path]::DirectorySeparatorChar, [StringComparison]::OrdinalIgnoreCase) -or !(Test-Path -LiteralPath $path -PathType Leaf)) {
       $status = '404 Not Found'
       $contentType = 'text/plain; charset=utf-8'
       $bytes = [Text.Encoding]::UTF8.GetBytes('Not found')
