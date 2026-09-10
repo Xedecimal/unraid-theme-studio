@@ -5,7 +5,12 @@
   --ts-line: #343434;
   --ts-text: #f4f4f5;
   --ts-muted: #98989f;
-  margin: -10px -12px 20px;
+  /* Stay inside Unraid's content area; negative side margins caused page scrolling. */
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  margin: -10px 0 20px;
   color: var(--ts-text);
   font-family: clear-sans, system-ui, sans-serif;
 }
