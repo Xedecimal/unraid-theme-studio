@@ -19,8 +19,13 @@ chmod 0755 "$TEMP_DIR/install/doinst.sh"
 if command -v makepkg >/dev/null 2>&1; then
   (cd "$TEMP_DIR" && makepkg -l y -c n "$DIST/$PACKAGE")
 else
-  tar --owner=0 --group=0 -C "$TEMP_DIR" -cJf "$DIST/$PACKAGE" .
+  # installpkg looks up install/doinst.sh by its exact archive member name.
+  tar --owner=0 --group=0 --transform='s,^\./,,' -C "$TEMP_DIR" -cJf "$DIST/$PACKAGE" .
 fi
+
+# Reject packages whose metadata would be skipped by installpkg.
+tar -xOf "$DIST/$PACKAGE" install/doinst.sh | cmp - "$TEMP_DIR/install/doinst.sh"
+tar -xOf "$DIST/$PACKAGE" install/slack-desc | cmp - "$TEMP_DIR/install/slack-desc"
 
 MD5="$(md5sum "$DIST/$PACKAGE" | awk '{print $1}')"
 sed -e "s|@VERSION@|$VERSION|g" -e "s|@MD5@|$MD5|g" -e "s|@GITHUB_REPOSITORY@|$GITHUB_REPOSITORY|g" \
