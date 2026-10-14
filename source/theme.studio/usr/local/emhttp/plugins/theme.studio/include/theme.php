@@ -355,6 +355,8 @@ body {
   background-image: none;
 }
 a, .fa-external-link { color: var(--link-text-color); }
+/* Stock .blue-text hardcodes --blue-800 (used for share/user name links on the dashboard); align it with the theme link color. Semantic state swaps to orange/red classes are unaffected. */
+html:root[class*="Theme--"] .blue-text { color: var(--link-text-color); }
 table.tablesorter { background-color: var(--dynamix-tablesorter-tbody-row-bg-color); }
 html:root[class*="Theme--"] table.usb_mounts,
 html:root[class*="Theme--"] table.samba_mounts,
