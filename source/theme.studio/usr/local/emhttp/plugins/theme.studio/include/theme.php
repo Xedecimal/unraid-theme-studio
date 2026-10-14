@@ -143,6 +143,12 @@ function theme_studio_css(array $theme): string
     // shadcn-style tokens used by the 7.2+ Vue UI (popovers, dropdown menus, notification panel).
     $popoverHsl = theme_studio_hsl($t['surface']);
     $popoverForegroundHsl = theme_studio_hsl($t['text']);
+    // Chart tokens are also exposed at html level so non-Vue canvas/conic-gradient widgets can read them from :root.
+    $chart1Hsl = theme_studio_hsl($t['positive']);
+    $chart2Hsl = theme_studio_hsl($t['accent']);
+    $chart3Hsl = theme_studio_hsl($t['warning']);
+    $chart4Hsl = theme_studio_hsl($t['danger']);
+    $chart5Hsl = theme_studio_hsl($t['textMuted']);
 
     /*
      * unRAID 7.2+ mounts every auto-mounted Vue component with the class "unapi", and its app CSS
@@ -248,6 +254,14 @@ html:root[class*="Theme--"] {
   /* shadcn tokens for floating panels: notification popover, hamburger/dropdown menus. */
   --popover: {$popoverHsl};
   --popover-foreground: {$popoverForegroundHsl};
+  /* shadcn chart tokens at html level (also scoped under .unapi below): non-Vue canvas/conic widgets read these from :root. */
+  --chart-1: {$chart1Hsl};
+  --chart-2: {$chart2Hsl};
+  --chart-3: {$chart3Hsl};
+  --chart-4: {$chart4Hsl};
+  --chart-5: {$chart5Hsl};
+  /* Dashboard donut hole (div.pie::after): match the card surface so it reads as a punched-out ring, not a bright disc. */
+  --dashstats-pie-after-bg-color: var(--dashboard-background-color);
   --title-header-background-color: {$t['surfaceAlt']};
   --hr-color: {$t['border']};
   --scrollbar-color: {$t['textMuted']};
