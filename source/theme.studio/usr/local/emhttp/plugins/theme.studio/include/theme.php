@@ -357,6 +357,12 @@ body {
 a, .fa-external-link { color: var(--link-text-color); }
 /* Stock .blue-text hardcodes --blue-800 (used for share/user name links on the dashboard); align it with the theme link color. Semantic state swaps to orange/red classes are unaffected. */
 html:root[class*="Theme--"] .blue-text { color: var(--link-text-color); }
+/* jquery.switchButton toggles (dashboard "Started only" filters): stock hardcodes #0088cc label, #486dba checked track, #ccc/#fafafa off state. Theme them; the on/off label classes give the dim/brighten state behavior for free. */
+html:root[class*="Theme--"] .switch-button-label.on { color: var(--link-text-color); }
+html:root[class*="Theme--"] .switch-button-background { background-color: var(--border-color); border-color: var(--alt-text-color); }
+html:root[class*="Theme--"] .switch-button-background.checked { background-color: var(--link-text-color); }
+html:root[class*="Theme--"] .switch-button-button { background-color: var(--text-color); border-color: var(--border-color); }
+html:root[class*="Theme--"] .switch-button-background.checked .switch-button-button { background-color: var(--background-color); }
 table.tablesorter { background-color: var(--dynamix-tablesorter-tbody-row-bg-color); }
 html:root[class*="Theme--"] table.usb_mounts,
 html:root[class*="Theme--"] table.samba_mounts,
