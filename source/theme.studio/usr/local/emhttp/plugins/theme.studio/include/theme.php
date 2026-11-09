@@ -149,6 +149,9 @@ function theme_studio_css(array $theme): string
     $chart3Hsl = theme_studio_hsl($t['warning']);
     $chart4Hsl = theme_studio_hsl($t['danger']);
     $chart5Hsl = theme_studio_hsl($t['textMuted']);
+    // Community Applications card hover glow: the stock value is a fixed orange rgba(255,140,47,0.5);
+    // tint it with the theme accent so the glow follows the preset.
+    $caShadow = theme_studio_rgba($t['accent'], 0.5);
 
     /*
      * unRAID 7.2+ mounts every auto-mounted Vue component with the class "unapi", and its app CSS
@@ -469,6 +472,25 @@ input:focus, select:focus, textarea:focus {
 /* unRAID 7.2+ Vue islands get class "unapi" at runtime, and the app CSS redefines all shadcn tokens on .unapi with light values — which overrides html-level vars for everything inside those elements (dropdowns, popovers, notification panel). This block wins by specificity: (0,3,1) > .unapi (0,1,0) and .unapi.dark (0,2,0). */
 html:root[class*="Theme--"] .unapi {
 {$unapiShadcn}{$unapiUi}}
+/* The Community Applications plugin (/Apps page) ships its own skin theme CSS at :root in the page BODY
+   (skins/Narrow/themes/<skin>.css, loaded after this stylesheet, so its :root wins at equal specificity).
+   Card hover, the app detail popup, and the sidebar use light stock values there. This block beats that
+   :root by specificity: (0,2,1) > (0,1,0). */
+html:root[class*="Theme--"] {
+  --template-hover-background: {$t['surfaceAlt']};
+  --template-favourite: {$t['surfaceAlt']};
+  --a-color: {$t['accent']};
+  --sidebar-background: {$t['surface']};
+  --sidebar-text: {$t['textMuted']};
+  --support-popup-text: {$t['text']};
+  --support-popup-background: {$t['surface']};
+  --chart-grid: {$t['border']};
+  --ca-light-bg-color: {$t['surface']};
+  --ca-dark-blue-color: {$t['textMuted']};
+  --ca-shadow-color: {$caShadow};
+}
+/* The SNMP plugin ships a monochrome #282832 icon PNG (invisible on dark themes; CSS color cannot touch raster pixels) — this filter chain tints it to gruvbox fg #EBDBB2. */
+img[src="/plugins/snmp/snmp.png"] { filter: invert(0.75) sepia(0.4) saturate(1.75) hue-rotate(5deg); }
 CSS;
 }
 
